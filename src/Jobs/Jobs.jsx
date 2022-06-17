@@ -1,17 +1,14 @@
-import React, { Component } from 'react'
-import protectedRoute from "../libs/protectedRoute"
-import axios from 'axios'
+import React, { Component } from "react";
+import protectedRoute from "../libs/protectedRoute";
+import axios from "axios";
 class Jobs extends Component {
-  state =
-    {
-
-    }
+  state = {};
   render() {
     return (
       <>
-       <h1 className="text-white">Jobs</h1> 
+        <h1 className="text-white">Jobs</h1>
       </>
-    )
+    );
   }
 }
 

@@ -2,14 +2,15 @@ import React, { useEffect, useState } from "react";
 import { NavLink, Route, Routes, useNavigate } from "react-router-dom";
 
 import Profile from "../Profile/Profile";
-import Jobs from "../Jobs/Jobs";
+import JobsList from "../Jobs/JobsList";
 import Login from "../Login/Login";
-import Register from "../Register/Register";
 import Header from "./Header";
-import { render } from "@testing-library/react";
+import RegisterDeveloper from "../Register/RegisterDeveloper";
+import RegisterCompany from "../Register/RegisterCompany";
+
+
 export default function Routing() {
   const [userData, setUserData] = useState(null);
-  let navigate = useNavigate();
 
   function getUserData() {
     let token = localStorage.getItem("userToken");
@@ -29,11 +30,12 @@ export default function Routing() {
     <>
       <Header userData={userData} logOut={logOut} />
       <Routes>
-        <Route path="/" exact element={<Jobs />} />
-        <Route path="/jobs" element={<Jobs />} />
+        <Route path="/" exact element={<JobsList />} />
+        <Route path="/jobs" element={<JobsList />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/login" element={<Login getUserData={getUserData} />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/register-Developer" element={<RegisterDeveloper />} />
+        <Route path="/register-company" element={<RegisterCompany />} />
       </Routes>
     </>
   );

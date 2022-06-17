@@ -1,20 +1,22 @@
-import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Joi from "joi";
-import style from "./Login.module.css";
+import React, { useState, useEffect } from "react";
+import style from "./Register.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
-export default function Login(props) {
+export default function RegisterDeveloper() {
   let [user, setUser] = useState({
-    username: "",
+    first_name: "",
+    last_name: "",
+    email: "",
+    age: "",
     password: "",
   });
-
   let [error, setError] = useState("");
   let [errorList, setErrorList] = useState([]);
-  let navigate = useNavigate();
+  let Navigate = useNavigate();
   let [loading, setLoading] = useState(false);
 
   function getUser(e) {
@@ -27,68 +29,83 @@ export default function Login(props) {
   async function formSubmit(e) {
     e.preventDefault();
     setLoading(true);
-
     let { data } = await axios.post(
-      `http://localhost:8000/api/v1/account/login`,
+      `https://route-egypt-api.herokuapp.com/signup`,
       user
     );
+    //console.log(data.message);
     if (data.message === "success") {
-      let userData = JSON.stringify(data);
-      console.log(userData);
-      localStorage.setItem("userToken", data.token);
-      localStorage.setItem("userData", userData);
-      navigate("/jobs");
       setLoading(false);
-      props.getUserData();
+      Navigate("/login");
     } else {
       setError(data.message);
       setLoading(false);
     }
-    // part of api in form
 
     let validationForm = validationRegister();
     if (validationForm.error) {
+      //console.log('error');
       setErrorList(validationForm.error.details);
     } else {
+      //console.log('success');
     }
   }
 
   function validationRegister() {
     let scheme = Joi.object({
-      username: Joi.string()
+      first_name: Joi.string().min(3).max(30).required(),
+      last_name: Joi.string().min(3).max(30).required(),
+      email: Joi.string()
         .email({ tlds: { allow: ["com", "net"] } })
         .required(),
-      password: Joi.string().pattern(new RegExp("")).required(),
+      age: Joi.number().min(1).max(90).required(),
+      password: Joi.string()
+        .pattern(new RegExp("^[A-Z][a-z][0-9]{3,30}$"))
+        .required(),
     });
     return scheme.validate(user, { abortEarly: false });
   }
 
-  /// error
-  // let checkUsers = () => {
-  //   Users && Users.map(User => {
-
-  //     let userNameRegister = User.user_name ;
-  //     let userEmailRegister = User.user_email ;
-  //     let userPasswordRegister = User.user_password ;
-  //     if(userNameRegister === user.user_name && userEmailRegister === user.user_email && userPasswordRegister === user.user_password)
-  //     {
-  //       // <Redirect from="/login" to="/home" />
-  //       console.log(user.user_name) ;
-
-  //       return ;
-  //     }
-  //   })
-  // }
+  // *********get api from fack website************
+  // useEffect(() => {
+  //   fetch("https://api.themoviedb.org/3/trending/movie/week?api_key=27ebb4a236fbca4c2911c748a7e8207a").then(r => {
+  //     return r.json();
+  //   }).then(d => console.log(d))
+  // }, [])
 
   return (
     <div>
       <div className={style.HomeStyle}>
-        <div className="container d-flex justify-content-center align-items-center h-100">
+        <div className="container d-flex justify-content-center align-items-center pt-5">
           <form className="w-50" onSubmit={formSubmit}>
             <div className="d-flex justify-content-center text-white">
-              <h1>Login Now</h1>
+              <h1>Register As Developer</h1>
             </div>
             {error && <div className="alert alert-danger">{error}</div>}
+            <div className="mb-3">
+              <label htmlFor="first_name" className="form-label">
+                Your Name
+              </label>
+              <input
+                onChange={getUser}
+                type="text"
+                className="form-control"
+                name="first_name"
+              ></input>
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="last_name" className="form-label">
+                Your Name
+              </label>
+              <input
+                onChange={getUser}
+                type="text"
+                className="form-control"
+                name="last_name"
+              ></input>
+            </div>
+
             <div className="mb-3">
               <label htmlFor="email" className="form-label">
                 Your Email
@@ -97,7 +114,19 @@ export default function Login(props) {
                 onChange={getUser}
                 type="email"
                 className="form-control"
-                name="username"
+                name="email"
+              ></input>
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="age" className="form-label">
+                Your Age
+              </label>
+              <input
+                onChange={getUser}
+                type="number"
+                className="form-control"
+                name="age"
               ></input>
             </div>
 
@@ -112,14 +141,20 @@ export default function Login(props) {
                 name="password"
               ></input>
             </div>
+
+            {/* <div className="mb-3">
+              <label htmlFor="confirm_password" className="form-label">Confirm Password</label>
+              <input onChange={getUser} type="password" className="form-control" name="confirm_password"></input>
+            </div> */}
             <div>
               {errorList.map((error, index) => (
                 <div className="alert alert-danger p-2">{error.message}</div>
               ))}
             </div>
+
             <div className="d-flex d-flex justify-content-end">
               <button type="submit" className="btn btn-primary">
-                {loading ? <FontAwesomeIcon icon={faSpinner} /> : "Login"}
+                {loading ? <FontAwesomeIcon icon={faSpinner} /> : "Submit"}
               </button>
             </div>
           </form>

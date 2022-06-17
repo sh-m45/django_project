@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import style from "./Header.module.css";
-//import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
 
 export default function Header(props) {
   return (
@@ -29,13 +27,13 @@ export default function Header(props) {
             <ul className="navbar-nav d-flex justify-content-between w-100">
               <div className="d-flex">
                 <li className="nav-item">
-                    <NavLink
-                      className="nav-link active"
-                      aria-current="page"
-                      to={"/jobs"}
-                    >
-                      Home
-                    </NavLink>
+                  <NavLink
+                    className="nav-link active"
+                    aria-current="page"
+                    to={"/jobs"}
+                  >
+                    Home
+                  </NavLink>
                 </li>
                 {props.userData ? (
                   <li className="nav-item px-2">
@@ -73,8 +71,13 @@ export default function Header(props) {
               ) : (
                 <div className="d-flex">
                   <li className="nav-item px-2">
-                    <NavLink className="nav-link" to={"/register"}>
-                      Register
+                    <NavLink className="nav-link" to={"/register-developer"}>
+                      Register As Developer
+                    </NavLink>
+                  </li>
+                  <li className="nav-item px-2">
+                    <NavLink className="nav-link" to={"/register-company"}>
+                      Register As Company
                     </NavLink>
                   </li>
                   <li className="nav-item px-2">
