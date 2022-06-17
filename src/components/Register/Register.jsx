@@ -8,8 +8,6 @@ import Users from './Users.json';
 import { useNavigate } from 'react-router-dom'
 
 export default function Register() {
-
-
   let [user, setUser] = useState({
     first_name: '', last_name: '', email: '', age: '', password: ''
   });
