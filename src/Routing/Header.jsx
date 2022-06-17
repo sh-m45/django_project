@@ -7,12 +7,11 @@ import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
 export default function Header(props) {
-  console.log(props);
   return (
     <div className={style.navabarStyle}>
       <nav className="navbar navbar-expand-lg navbar-dark">
         <div className="container-fluid">
-          <NavLink className="navbar-brand" to={"/login"}>
+          <NavLink className="navbar-brand" to={"/jobs"}>
             JobsPortal
           </NavLink>
           <button
@@ -30,16 +29,20 @@ export default function Header(props) {
             <ul className="navbar-nav d-flex justify-content-between w-100">
               <div className="d-flex">
                 <li className="nav-item">
-                  <a className="nav-link active" aria-current="page" href="#">
-                    Home
-                  </a>
+                    <NavLink
+                      className="nav-link active"
+                      aria-current="page"
+                      to={"/jobs"}
+                    >
+                      Home
+                    </NavLink>
                 </li>
                 {props.userData ? (
                   <li className="nav-item px-2">
                     <NavLink
                       className="nav-link active"
                       aria-current="page"
-                      to={"/Jobs"}
+                      to={"/jobs"}
                     >
                       Jobs
                     </NavLink>

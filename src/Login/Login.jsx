@@ -34,10 +34,11 @@ export default function Login(props) {
       `http://localhost:8000/api/v1/account/login`,
       user
     );
-    console.log(data.message);
     if (data.message === "success") {
-      console.log(data);
+      let userData = JSON.stringify(data);
+      console.log(userData);
       localStorage.setItem("userToken", data.token);
+      localStorage.setItem("userData", userData);
       navigate("/jobs");
       setLoading(false);
       props.getUserData();
