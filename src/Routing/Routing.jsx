@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, Route, Routes, useNavigate } from "react-router-dom";
 
-import Profile from "../Profile/Profile";
-import Jobs from "../Jobs/Jobs";
-import Login from "../Login/Login";
-import Register from "../Register/Register";
+import Profile from "../components/Profile/Profile";
+import Jobs from "../components/Jobs/Jobs";
+import Login from "../components/Login/Login";
+import Register from "../components/Register/Register";
 import Header from "./Header";
 import { render } from "@testing-library/react";
 export default function Routing() {
