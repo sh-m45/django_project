@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import JobItem from "./JobsItem";
-import axios from "axios";
+import protectedRoute from "../libs/protectedRoute";
 
 const JobsList = () => {
   let [jobs, setJobs] = useState([]);
@@ -55,4 +55,4 @@ const JobsList = () => {
   );
 };
 
-export default JobsList;
+export default protectedRoute(JobsList);

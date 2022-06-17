@@ -60,23 +60,6 @@ export default function Login(props) {
     });
     return scheme.validate(user, { abortEarly: false });
   }
-
-  /// error
-  // let checkUsers = () => {
-  //   Users && Users.map(User => {
-
-  //     let userNameRegister = User.user_name ;
-  //     let userEmailRegister = User.user_email ;
-  //     let userPasswordRegister = User.user_password ;
-  //     if(userNameRegister === user.user_name && userEmailRegister === user.user_email && userPasswordRegister === user.user_password)
-  //     {
-  //       // <Redirect from="/login" to="/home" />
-
-  //       return ;
-  //     }
-  //   })
-  // }
-
   return (
     <div>
       <div className={style.HomeStyle}>
