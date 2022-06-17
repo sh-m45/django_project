@@ -50,6 +50,20 @@ export default function Header(props) {
                 ) : (
                   ""
                 )}
+
+                {props.userData ? (
+                    <li className="nav-item px-2">
+                      <NavLink
+                          className="nav-link"
+                          aria-current="page"
+                          to={"/notifications"}
+                      >
+                        Notifications
+                      </NavLink>
+                    </li>
+                ) : (
+                    ""
+                )}
               </div>
               {props.userData ? (
                 <div className="d-flex">
