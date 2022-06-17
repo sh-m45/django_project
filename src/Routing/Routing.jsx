@@ -1,48 +1,44 @@
-import React, { useEffect, useState } from "react";
-import {
-  NavLink,
-  Route,
-  Routes,
-  useNavigate,
-  Navigate,
-} from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {Route, Routes, useNavigate} from "react-router-dom";
 
-import Profile from "../Profile/Profile";
-import Login from "../Login/Login";
+import Profile from "../components/Profile/Profile";
+import Login from "../components/Login/Login";
+import Register from "../components/Register/Register";
 import Header from "./Header";
-import RegisterDeveloper from "../Register/RegisterDeveloper";
-import RegisterCompany from "../Register/RegisterCompany";
-import JobsList from "../Jobs/JobsList";
-import JobDetails from "../Jobs/JobDetails";
+import Notification from "../components/notifications/Notifications";
+import JobsList from "../components/Jobs/JobsList";
+import JobDetails from "../components/Jobs/JobsDetails";
 
 export default function Routing() {
-  const [userData, setUserData] = useState(null);
+    const [userData, setUserData] = useState(null);
+    let navigate = useNavigate();
 
-  function getUserData() {
-    let token = localStorage.getItem("userToken");
-    setUserData(token);
-  }
+    function getUserData() {
+        let token = localStorage.getItem("userToken");
+        setUserData(token);
+    }
 
-  function logOut() {
-    localStorage.removeItem("userToken");
-    setUserData(null);
-  }
+    function logOut() {
+        localStorage.removeItem("userToken");
+        setUserData(null);
+    }
 
-  useEffect(() => {}, [userData]);
+    useEffect(() => {
+        console.log(userData);
+    }, [userData]);
 
-  return (
-    <>
-      <Header userData={userData} logOut={logOut} />
-      <Routes>
-        <Route path="/" element={<Navigate to="/jobs" />} />
-        <Route path="/register-Developer" element={<RegisterDeveloper />} />
-        <Route path="/register-company" element={<RegisterCompany />} />
-        <Route path="/login" element={<Login getUserData={getUserData} />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/jobs" element={<JobsList />} />
-        <Route path="/jobs/" element={<JobsList />} />
-        <Route path="/jobs/:id" element={<JobDetails />} />
-      </Routes>
-    </>
-  );
+    return (
+        <>
+            <Header userData={userData} logOut={logOut}/>
+            <Routes>
+                <Route path="/" exact element={<JobsList/>}/>
+                <Route path="/jobs" element={<JobsList/>}/>
+                <Route path="/jobs/:id" element={<JobDetails/>}/>‏
+                <Route path="/profile" element={<Profile/>}/>
+                <Route path="/login" element={<Login getUserData={getUserData}/>}/>
+                <Route path="/register" element={<Register/>}/>
+                <Route path="/notifications" element={<Notification/>}/>
+            </Routes>
+        </>
+    );
 }
