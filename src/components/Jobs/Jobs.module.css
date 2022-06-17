@@ -1,0 +1,9 @@
+body{
+    height: 1000px;
+    background-color: rgb(13, 35, 51);
+}
+.HomeStyle{
+    background-color: rgb(13, 35, 51);
+    color: white;
+    padding-top: 100px
+}
