@@ -23,7 +23,6 @@ export default function RegisterDeveloper() {
     let userCopy = { ...user };
     userCopy[e.target.name] = e.target.value;
     setUser(userCopy);
-    // console.log(userCopy);
   }
 
   async function formSubmit(e) {
@@ -33,7 +32,6 @@ export default function RegisterDeveloper() {
       `https://route-egypt-api.herokuapp.com/signup`,
       user
     );
-    //console.log(data.message);
     if (data.message === "success") {
       setLoading(false);
       Navigate("/login");
@@ -44,10 +42,8 @@ export default function RegisterDeveloper() {
 
     let validationForm = validationRegister();
     if (validationForm.error) {
-      //console.log('error');
       setErrorList(validationForm.error.details);
     } else {
-      //console.log('success');
     }
   }
 

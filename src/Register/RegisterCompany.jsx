@@ -14,7 +14,7 @@ export default function Company() {
     password: "",
   });
   let [error, setError] = useState("");
-  let [errorList, setErroeList] = useState([]);
+  let [errorList, setErrorList] = useState([]);
   let Navigate = useNavigate();
   let [loading, setLoading] = useState(false);
 
@@ -31,7 +31,6 @@ export default function Company() {
       `https://route-egypt-api.herokuapp.com/signup`,
       user
     );
-    //console.log(data.message);
     if (data.message === "success") {
       setLoading(false);
       Navigate("/login");
@@ -42,10 +41,8 @@ export default function Company() {
 
     let validationForm = validationRegister();
     if (validationForm.error) {
-      //console.log('error');
-      setErroeList(validationForm.error.details);
+      setErrorList(validationForm.error.details);
     } else {
-      //console.log('success');
     }
   }
 

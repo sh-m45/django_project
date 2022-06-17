@@ -21,7 +21,6 @@ export default function Login(props) {
     let userCopy = { ...user };
     userCopy[e.target.name] = e.target.value;
     setUser(userCopy);
-    // console.log(userCopy);
   }
 
   async function formSubmit(e) {
@@ -34,7 +33,6 @@ export default function Login(props) {
     );
     if (data.message === "success") {
       let userData = JSON.stringify(data);
-      console.log(userData);
       localStorage.setItem("userToken", data.token);
       localStorage.setItem("userData", userData);
       navigate("/jobs");
@@ -73,7 +71,6 @@ export default function Login(props) {
   //     if(userNameRegister === user.user_name && userEmailRegister === user.user_email && userPasswordRegister === user.user_password)
   //     {
   //       // <Redirect from="/login" to="/home" />
-  //       console.log(user.user_name) ;
 
   //       return ;
   //     }
