@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import protectedRoute from "../libs/protectedRoute"
 import axios from 'axios'
-class Home extends Component {
+class Jobs extends Component {
   state =
     {
 
@@ -9,10 +9,10 @@ class Home extends Component {
   render() {
     return (
       <>
-       <h1 className="text-white">Home</h1> 
+       <h1 className="text-white">Jobs</h1> 
       </>
     )
   }
 }
 
-export default protectedRoute(Home);
+export default protectedRoute(Jobs);

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { Component } from 'react'
-import prodectedRoute from './../libs/protectedRoute';
-class Display extends Component {
+import protectedRoute from '../libs/protectedRoute';
+class Profile extends Component {
   render() {
     return (
       <div className="pt-5 text-white">     
@@ -11,4 +11,4 @@ class Display extends Component {
   }
 }
 
-export default prodectedRoute(Display)
+export default protectedRoute(Profile)

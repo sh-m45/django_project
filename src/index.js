@@ -9,8 +9,8 @@ import '../node_modules/bootstrap/dist/js/bootstrap.bundle.js';
 import { NavLink } from 'react-router-dom'
 import Routing from './Routing/Routing';
 import Header from './Routing/Header';
-import Display from './Display/Display';
-import Home from './Home/Home';
+import Profile from './Profile/Profile';
+import Jobs from './Jobs/Jobs';
 import Register from './Register/Register';
 import Login from './Login/Login';
 
